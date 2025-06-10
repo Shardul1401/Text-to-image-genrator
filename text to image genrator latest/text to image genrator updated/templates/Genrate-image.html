@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Image Genrator</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+  <nav>
+    <ul class="sidebar">
+      <li onclick="hidesidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg></a></li>
+      <li><a href="/templates/index.html">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Ai Tools</a></li>
+    </ul>
+    <ul>
+      <img id="logo" src="/templates/logo.png" alt="">
+      <li id="logo-t">Text To Image Genrator</li>
+      <li class="hideOnMobile"><a href="/templates/index.html">Home</a></li>
+      <li class="hideOnMobile"><a href="#">About</a></li>
+      <li class="hideOnMobile"><a href="#">Ai Tools</a></li>
+      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg></a></li>
+    </ul>
+  </nav>
+      <div class="headline">
+        <h2 class="headline-text"></h2>
+      </div>
+      <div class="input-box">
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" name="input" id="prompt" placeholder="Enter your Prompt">
+        <p>Genrate A Image Of <span class="suggestions"></span></p>
+        <button id="submitbtn" type="submit">Submit</button>
+        <br>
+      </div>
+      <div id="images"></div>
+      <div class="samples"></div>
+
+      <!--scrpiting--->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      function showSidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'flex';
+      }
+      function hidesidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'none';
+      }
+
+      let a = 0;
+      if(a <= 100){ 
+        var typed = new Typed(".headline-text",{
+          strings : ["Welcome To Text To Image Generator"],
+          typeSpeed  : 100,
+          backSpeed : 100,
+          loop: true
+        });
+      }
+      if(a <= 100){ 
+        var typed = new Typed(".suggestions",{
+          strings : ["A Dog....", "A Cat....", "Mango.....", "Rose......"],
+          typeSpeed  : 120,
+          backSpeed : 120,
+          loop: true
+        });
+      }
+
+      // Function to generate images
+      async function generateImages() {
+    const prompt = document.getElementById('prompt').value;  // Get the prompt from the input field
+    const response = await fetch('/generateimages', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: prompt })
+    });
+    
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        displayImages(data);  // Call a function to display images
+    } else {
+        console.error('Error generating images:', response.statusText);
+    }
+}
+
+// Function to display images
+function displayImages(data) {
+    const imagesContainer = document.getElementById('images');
+    imagesContainer.innerHTML = '';  // Clear previous images
+
+    if (data.image) {
+        const imgElement = document.createElement('img');
+        imgElement.src = data.image;  // Display the base64 image
+        imgElement.width = 256;  // Set the width for the image
+        imagesContainer.appendChild(imgElement);
+    } else {
+        imagesContainer.textContent = 'No image found!';
+    }
+}
+
+      // Add event listener to the submit button
+      document.getElementById('submitbtn').addEventListener('click', generateImages);
+    </script>
+</body>
+</html>

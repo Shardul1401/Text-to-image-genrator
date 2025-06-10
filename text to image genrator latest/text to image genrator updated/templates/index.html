@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text to Image Genrator</title>
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+  <nav>
+    <ul class="sidebar">
+      <li onclick="hidesidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg></a></li>
+      <li><a href="/templates/index.html">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Ai Tools</a></li>
+    </ul>
+    <ul>
+      <img id="logo" src="/templates/logo.png" alt="">
+      <li id="logo-t">Text To Image Genrator</li>
+      <li class="hideOnMobile"><a href="/templates/index.html">Home</a></li>
+      <li class="hideOnMobile"><a href="#">About</a></li>
+      <li class="hideOnMobile"><a href="#">Ai Tools</a></li>
+      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg></a></li>
+    </ul>
+  </nav>
+  <div class="headline">
+    <h2 class="headline-text"></h2>
+
+  </div>
+  <Div class="video">
+    <video
+      src="/static/invideo-ai-1080 AI Photo Editing Magic_ Watch the Transf 2024-10-12 (online-video-cutter.com).mp4"
+      muted autoplay loop></video>
+  </Div>
+  <div class=head-img>
+    <img src="/static/hero-ai-image-generator.webp" alt="">
+    <p>Introducing our revolutionary text-to-image generator AI, a groundbreaking tool that transforms your words into
+    stunning visuals! Whether you're a marketer, designer, or content creator, our AI can turn your concepts into
+      high-quality images in seconds. Simply input your description, and watch as the magic unfolds—get customized
+      graphics for your campaigns, social media posts, and presentations without the hassle of traditional design
+      processes. With limitless creativity at your fingertips, you can enhance your brand’s storytelling and captivate
+      your audience like never before. Unleash your imagination and experience the future of visual content creation
+      today!</p>
+  </div>
+  <p class="H-features">Features</p>
+  <div class="features">
+    <div class="genrate-image">
+      <a href="/templates/Genrate-image.html">
+        <img src="/static/640ef0d23b047071cf8cc7fe_artgenerator.png" alt="Genrate-image">
+        <p>Genrate Image</p>
+      </a>
+    </div>
+  </div>
+
+  <!--scrpiting--->
+  <script src="/static/index.js"></script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display ='flex'
+}
+function hidesidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+}
+
+    a = 0;
+    if (a <= 100) {
+      var typed = new Typed(".headline-text", {
+        strings: ["Welcome To Text To Image Genrator"],
+        typeSpeed: 100,
+        backSpeed: 100,
+        loop: true
+      })
+    }
+    if (a <= 100) {
+      var typed = new Typed(".suggestions", {
+        strings: ["A Dog....", "A Cat....", "Mango.....", "Rose......"],
+        typeSpeed: 120,
+        backSpeed: 120,
+        loop: true
+      })
+    }
+
+      
+    
+  </script>
+</body>
+
+</html>
